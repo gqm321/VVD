@@ -1,124 +1,79 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta name="referrer" content="no-referrer"/>
-    <meta charset="UTF-8">
-    <title>VVD Editor Plus</title>
-    <link href="static/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" href="https://www.vocaloid.com/favicon.ico" type="image/x-icon">
+<meta name="referrer" content="no-referrer">
+<meta charset="UTF-8">
+<title>VVD Editor Plus</title>
+<link href="static/bootstrap.min.css" rel="stylesheet">
+<link rel="icon" href="https://www.vocaloid.com/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <nav class="navbar navbar-light bg-white shadow-sm px-3">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="./">
-            <img src="static/logo.png" height="22" class="d-inline-block align-text-top me-2" alt="VOCALOID">
-            <span class="fw-bold text-primary">VVD Editor Plus</span>
-        </a>
-        <div class="d-flex gap-3">
-            <a class="btn btn-outline-primary btn-sm px-3" one-link-mark="yes" href="en">EN</a>
-        </div>
-    </div>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="./">
+      <img src="static/logo.png" height="22" class="align-text-top me-2" alt="VOCALOID">
+      <span class="fw-bold text-primary">VVD Editor Plus</span>
+    </a>
+    <a class="btn btn-outline-primary btn-sm px-3" href="en">EN</a>
+  </div>
 </nav>
-
 <div class="container mt-4">
-    <div class="card shadow-sm border-0">
-        <div class="card-body p-4">
-            <div class="row g-0 align-items-center">
-                <div class="col">
-                    <div class="mb-2 fw-medium text-muted">密文</div>
-                    <textarea class="form-control" style="height: 280px;" aria-label="VVD密文" id="miwen" placeholder="请输入密文..."></textarea>
-                </div>
-                <div class="col-auto d-flex justify-center px-4" style="min-width:110px">
-                    <div class="btn-group-vertical gap-2 w-100">
-                        <button type="button" class="btn btn-primary py-2" onclick="jie_mi()">解密 →</button>
-                        <button type="button" class="btn btn-warning py-2" onclick="jia_mi()">← 加密</button>
-                        <button type="button" class="btn btn-success py-2" onclick="download_vvd_content()">下载</button>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="mb-2 fw-medium text-muted">明文</div>
-                    <textarea class="form-control" style="height: 280px;" aria-label="VVD明文" id="mingwen" placeholder="解密后的明文将显示在这里..."></textarea>
-                </div>
-            </div>
+  <div class="card shadow-sm border-0">
+    <div class="card-body p-4">
+      <div class="row g-0 align-items-center">
+        <div class="col">
+          <div class="mb-2 text-muted">密文</div>
+          <textarea class="form-control" style="height:280px" id="miwen" placeholder="请输入密文..."></textarea>
         </div>
+        <div class="col-auto d-flex justify-center px-4" style="min-width:110px">
+          <div class="btn-group-vertical gap-2 w-100">
+            <button class="btn btn-primary py-2" onclick="jie_mi()">解密 →</button>
+            <button class="btn btn-warning py-2" onclick="jia_mi()">← 加密</button>
+            <button class="btn btn-success py-2" onclick="download_vvd_content()">下载</button>
+          </div>
+        </div>
+        <div class="col">
+          <div class="mb-2 text-muted">明文</div>
+          <textarea class="form-control" style="height:280px" id="mingwen" placeholder="解密后的明文将显示在这里..."></textarea>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-
 <div class="container mt-3 mb-4">
-    <div class="card shadow-sm border-0">
-        <div class="card-body p-4">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <label class="form-label text-muted fw-medium">CompID</label>
-                    <input type="text" class="form-control" placeholder="例：BK8H76TAEHXWSKDB" id="compid">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label text-muted fw-medium">声库名字</label>
-                    <input type="text" class="form-control" placeholder="例：Luotianyi_CHN_Meng" id="dbname">
-                </div>
-                <div class="col-md-4">
-                    <label class="form-label text-muted fw-medium">操作</label>
-                    <div class="d-flex gap-2 flex-wrap">
-                        <button class="btn btn-primary flex-fill" onclick="generate_vvd()">生成</button>
-                        <button class="btn btn-success flex-fill" onclick="download_vvd()">下载</button>
-                        <button class="btn btn-danger flex-fill" onclick="download_bat()">V4安装脚本</button>
-                        <button class="btn btn-warning flex-fill" onclick="window.location.href='/VVD/help.html'">?</button>
-                    </div>
-                </div>
-            </div>
+  <div class="card shadow-sm border-0">
+    <div class="card-body p-4">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <label class="form-label text-muted">CompID</label>
+          <input type="text" class="form-control" placeholder="例：BK8H76TAEHXWSKDB" id="compid">
         </div>
+        <div class="col-md-4">
+          <label class="form-label text-muted">声库名字</label>
+          <input type="text" class="form-control" placeholder="例：Luotianyi_CHN_Meng" id="dbname">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label text-muted">操作</label>
+          <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-primary flex-fill" onclick="generate_vvd()">生成</button>
+            <button class="btn btn-success flex-fill" onclick="download_vvd()">下载</button>
+            <button class="btn btn-danger flex-fill" onclick="download_bat()">V4安装脚本</button>
+            <button class="btn btn-warning flex-fill" onclick="location.href='/VVD/help.html'">?</button>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
-
 <div class="text-center mt-3 text-muted small">VVD Editor Plus</div>
-</body>
 <script>
-    function download(filename, text) {
-        var pom = document.createElement('a');
-        pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-        pom.setAttribute('download', filename);
-        if (document.createEvent) {
-            var event = document.createEvent('MouseEvents');
-            event.initEvent('click', true, true);
-            pom.dispatchEvent(event);
-        } else {
-            pom.click();
-        }
-    }
-
-    const dict = {
-        'A':'[', '[':'A', '_':'E', 'E':'_', 'H':'R', 'S':'I', 'O':'U', 'J':'P', 'P':'J',
-        'K':'Q', 'Q':'K', 'W':'M', 'M':'W', 'I':'S', '^':'D', 'D':'^', '\\':'F', ']':'G',
-        'G':']', 'F':'\\', 'R':'H', 'U':'O', '@':'Z', 'Z':'@', 'B':'X', 'X':'B', 'C':'Y',
-        'Y':'C', 'L':'V', 'V':'L', 'T':'N', 'N':'T', '+':'1', '(':'2', ')':'3', '.':'4',
-        '/':'5', ',':'6', '-':'7', '"':'8', '#':'9', '*':'0', '1':'+', '2':'(', '3':')',
-        '4':'.', '5':'/', '6':',', '7':'-', '8':'"', '9':'#', '0':'*', '\'':'=', '=':'\'',
-        '{':'a', 'a':'{', 'h':'r', 'r':'h', 'n':'t', 't':'n', 'o':'u', 'u':'o', 'g':'}',
-        '}':'g', 'j':'p', 'p':'j', 'k':'q', 'q':'k', 'i':'s', 's':'i', 'e':'\x7f', '\x7f':'e',
-        '~':'d', 'd':'~', 'b':'x', 'x':'b', 'c':'y', 'y':'c', 'l':'v', 'v':'l', 'z':'`',
-        '`':'z', 'm':'w', 'w':'m', 'f':'|', '|':'f'
-    };
-
-    function convert(str) {
-    return str.split('').map(c => dict[c] || c).join('');
-    }
-
-    function jie_mi() {
-        document.getElementById('mingwen').value = convert(document.getElementById('miwen').value);
-    }
-
-    function jia_mi() {
-        document.getElementById('miwen').value = convert(document.getElementById('mingwen').value);
-    }
-
-    function download_vvd_content() {
-        download('Voicebank.vvd', document.getElementById('miwen').value);
-    }
-
-    function generate_vvd() {
-        const compid = document.getElementById('compid').value;
-        const dbname = document.getElementById('dbname').value;
-        const plain = `"ID" = "VOCALOID VIRTUAL VOICE"
+function download(filename,text){const pom=document.createElement('a');pom.setAttribute('href','data:text/plain;charset=utf-8,'+encodeURIComponent(text));pom.setAttribute('download',filename);if(document.createEvent){const event=document.createEvent('MouseEvents');event.initEvent('click',!0,!0);pom.dispatchEvent(event)}else{pom.click()}}
+const dict={A:'[','[':'A',_:'E',E:'_',H:'R',S:'I',O:'U',J:'P',P:'J',K:'Q',Q:'K',W:'M',M:'W',I:'S','^':'D',D:'^','\\':'F',']':'G',G:']',F:'\\',R:'H',U:'O','@':'Z',Z:'@',B:'X',X:'B',C:'Y',Y:'C',L:'V',V:'L',T:'N',N:'T','+':'1','(':'2',')':'3','.':'4','/':'5',',':'6','-':'7','"':'8','#':'9','*':'0','1':'+','2':'(',3:')',4:'.','5':'/',6:',',7:'-',8:'"',9:'#',0:'*',"'":'=',':':"'",'{':'a',a:'{',h:'r',r:'h',n:'t',t:'n',o:'u',u:'o',g:'}','}':'g',j:'p',p:'j',k:'q',q:'k',i:'s',s:'i',e:'\x7f','\x7f':'e','~':'d',d:'~',b:'x',x:'b',c:'y',y:'c',l:'v',v:'l',z:'`','`':'z',m:'w',w:'m',f:'|','|':'f'};
+function convert(str){return str.split('').map(c=>dict[c]||c).join('')}
+function jie_mi(){document.getElementById('mingwen').value=convert(document.getElementById('miwen').value)}
+function jia_mi(){document.getElementById('miwen').value=convert(document.getElementById('mingwen').value)}
+function download_vvd_content(){download('Voicebank.vvd',document.getElementById('miwen').value)}
+function generate_vvd(){const compid=document.getElementById('compid').value,dbname=document.getElementById('dbname').value;const plain=`"ID" = "VOCALOID VIRTUAL VOICE"
 "FORMAT" = "4.0.0.0"
 "VOICEIDSTR" = "${compid}"
 "VOICENAME" = "${dbname}"
@@ -127,20 +82,9 @@
 "Clearness" = "0"
 "Opening" = "0"
 "Gender Factor" = "0"
-"Growl" = "1"`;
-        document.getElementById('mingwen').value = plain;
-        document.getElementById('miwen').value = convert(plain);
-    }
-
-    function download_vvd() {
-        generate_vvd();
-        download(document.getElementById('compid').value + '.vvd', document.getElementById('miwen').value);
-    }
-
-    function download_bat() {
-        const compid = document.getElementById('compid').value;
-        const dbname = document.getElementById('dbname').value;
-        const install = `set DB_COMPID=${compid}
+"Growl" = "1"`;document.getElementById('mingwen').value=plain,document.getElementById('miwen').value=convert(plain)}
+function download_vvd(){generate_vvd(),download(document.getElementById('compid').value+'.vvd',document.getElementById('miwen').value)}
+function download_bat(){const compid=document.getElementById('compid').value,dbname=document.getElementById('dbname').value;const install=`set DB_COMPID=${compid}
 set DB_DRP=0B0032
 set DB_DEFAULTKEY=1145141919810
 set DB_NAME=${dbname}
@@ -161,8 +105,7 @@ reg ADD "%POLIDIR%\\%DB_COMPID%" /F /V DRP /T REG_SZ /D "%DB_DRP%" %reg3264%
 reg ADD "%POLIDIR%\\%DB_COMPID%" /F /V PATH /T REG_SZ /D "%DB_PATH%" %reg3264%
 reg ADD "%POLIDIR%\\%DB_COMPID%" /F /V INSTALLED /T REG_DWORD /D 1 %reg3264%
 reg ADD "%POLIDIR%\\%DB_COMPID%" /F /V NAME /T REG_SZ /D "VOCALOID%DB_VERSION% Voice DB (%DB_NAME%)" %reg3264%
-reg ADD "%POLIDIR%\\%DB_COMPID%" /F /V TIME /T REG_SZ /D "BHMN74F9ED86FKAB" %reg3264%`;
-        const uninstall = `set DB_COMPID=${compid}
+reg ADD "%POLIDIR%\\%DB_COMPID%" /F /V TIME /T REG_SZ /D "BHMN74F9ED86FKAB" %reg3264%`;const uninstall=`set DB_COMPID=${compid}
 set DB_DRP=0B0032
 set DB_DEFAULTKEY=1145141919810
 set DB_NAME=${dbname}
@@ -171,9 +114,7 @@ set BASEDIR=HKEY_LOCAL_MACHINE\\SOFTWARE\\VOCALOID4\\DATABASE
 set POLIDIR=HKEY_LOCAL_MACHINE\\SOFTWARE\\POCALOID4\\DATABASE
 if %PROCESSOR_ARCHITECTURE%==x86 (set reg3264= ) else (set reg3264=/reg:32)
 reg DELETE "%BASEDIR%\\%DB_COMPID%" /F %reg3264%
-reg DELETE "%POLIDIR%\\%DB_COMPID%" /F %reg3264%`;
-        download('install.bat', install);
-        download('uninstall.bat', uninstall);
-    }
+reg DELETE "%POLIDIR%\\%DB_COMPID%" /F %reg3264%`;download('install.bat',install),download('uninstall.bat',uninstall)}
 </script>
+</body>
 </html>

@@ -1,162 +1,72 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="referrer" content="no-referrer"/>
-    <meta charset="UTF-8">
-    <title>Help</title>
-    <link href="static/bootstrap.min.css" rel="stylesheet">
-    <link rel="icon" href="https://www.vocaloid.com/favicon.ico" type="image/x-icon">
+<meta name="referrer" content="no-referrer">
+<meta charset="UTF-8">
+<title>Help</title>
+<link href="static/bootstrap.min.css" rel="stylesheet">
+<link rel="icon" href="https://www.vocaloid.com/favicon.ico" type="image/x-icon">
 </head>
 <body>
 <nav class="navbar navbar-light bg-white shadow-sm px-3">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="../">
-            <img src="static/logo.png" height="22" class="d-inline-block align-text-top me-2" alt="VOCALOID">
-            <span class="fw-bold text-primary">VVD Editor Plus Help</span>
-        </a>
-        <div class="d-flex gap-3">
-            <a class="btn btn-outline-primary btn-sm px-3" one-link-mark="yes" href="../help">CN</a>
-        </div>
-    </div>
+  <div class="container-fluid">
+    <a class="navbar-brand" href="./">
+      <img src="static/logo.png" height="22" class="align-text-top me-2" alt="VOCALOID">
+      <span class="fw-bold text-primary">VVD Editor Plus Help</span>
+    </a>
+    <a class="btn btn-outline-primary btn-sm px-3" href="../help">CN</a>
+  </div>
 </nav>
-
 <div class="container mt-4 mb-5">
-    <div class="card shadow-sm border-0 p-4">
-        <h1 id="帮助" class="mb-4">Help</h1>
-
-        <h2 id="什么是vvd" class="mt-3">What is VVD</h2>
-        <p>VVD is a file under the same path as .ddb and .ddi files, using the same name as .ddb and .ddi files, storing the basic information about the voicebank.</p>
-
-        <h2 id="编辑vvd可以干什么" class="mt-4">What can we do by editing VVD</h2>
-        <p>Editing <code>VOICENAME</code> in VVD can change the name of a voicebank in V2/3/4 editor. (V5 editor reads the name string in registry and won't be affected.)</p>
-
-        <h2 id="关于如何使用安装脚本" class="mt-4">How to use the install script</h2>
-        <p>This script can install a voicebank into V4</p>
-        <ol>
-            <li>Fill in the CompID and the name of a voicebank, download the .vvd file and the script.</li>
-            <li>Move the .ddb, .ddi, and .vvd file under a subdir whose name is same as the <code>CompID</code> of this voicebank. (E.g. Luotianyi_CHN_Meng: <code>D:\Program Files (x86)\VoiceDB\LuoTianyiV4_CHN\BK8H76TAEHXWSKDB</code>) Confirm .ddb, .ddi and .vvd files share the same name and under the same dir.</li>
-            <li>Move <code>install.bat</code> into the same dir as above and <strong>Run as Administrator</strong>.</li>
-            <li>Now the voicebank should have been successfully installed. Similarly, you can uninstall it using <code>uninstall.bat</code>.</li>
-        </ol>
-
-        <h2 id="关于compid" class="mt-4">About CompID</h2>
-        <p>Since the install script is for V4, you need to get a CompID for the voicebank which matches its language. V4 voicebanks can directly use the origin CompID. V5 voicebanks, however, need to get a corresponding V4 CompID. Here are some V4 CHN, JPN and ENG CompID, click to pick it randomly.</p>
-
-        <div class="mt-4">
-    <div class="row g-3">
+  <div class="card shadow-sm border-0 p-4">
+    <h1 id="帮助" class="mb-4">Help</h1>
+    <h2 id="什么是vvd" class="mt-3">What is VVD</h2>
+    <p>VVD is a file under the same path as .ddb and .ddi files, using the same name as .ddb and .ddi files, storing the basic information about the voicebank.</p>
+    <h2 id="编辑vvd可以干什么" class="mt-4">What can we do by editing VVD</h2>
+    <p>Editing <code>VOICENAME</code> in VVD can change the name of a voicebank in V2/3/4 editor. (V5 editor reads the name string in registry and won't be affected.)</p>
+    <h2 id="关于如何使用安装脚本" class="mt-4">How to use the install script</h2>
+    <p>This script can install a voicebank into V4</p>
+    <ol>
+      <li>Fill in the CompID and the name of a voicebank, download the .vvd file and the script.</li>
+      <li>Move the .ddb, .ddi, and .vvd file under a subdir whose name is same as the <code>CompID</code> of this voicebank. (E.g. Luotianyi_CHN_Meng: <code>D:\Program Files (x86)\VoiceDB\LuoTianyiV4_CHN\BK8H76TAEHXWSKDB</code>) Confirm .ddb, .ddi and .vvd files share the same name and under the same dir.</li>
+      <li>Move <code>install.bat</code> into the same dir as above and <strong>Run as Administrator</strong>.</li>
+      <li>Now the voicebank should have been successfully installed. Similarly, you can uninstall it using <code>uninstall.bat</code>.</li>
+    </ol>
+    <h2 id="关于compid" class="mt-4">About CompID</h2>
+    <p>Since the install script is for V4, you need to get a CompID for the voicebank which matches its language. V4 voicebanks can directly use the origin CompID. V5 voicebanks, however, need to get a corresponding V4 CompID. Here are some V4 CHN, JPN and ENG CompID, click to pick it randomly.</p>
+    <div class="mt-4">
+      <div class="row g-3">
         <div class="col-md-4">
-            <div class="mb-2 text-muted">V4 CHN CompID</div>
-            <div class="input-group">
-                <input type="text" class="form-control" id="chn">
-                <button class="btn btn-primary" id="get_chn" onclick="get_random_chn()">Pick</button>
-            </div>
+          <div class="text-muted mb-2">V4 CHN CompID</div>
+          <div class="input-group">
+            <input type="text" class="form-control" id="chn">
+            <button class="btn btn-primary" onclick="getRandom('chn',chnlist)">Pick</button>
+          </div>
         </div>
         <div class="col-md-4">
-            <div class="mb-2 text-muted">V4 JPN CompID</div>
-            <div class="input-group">
-                <input type="text" class="form-control" id="jpn">
-                <button class="btn btn-primary" id="get_jpn" onclick="get_random_jpn()">Pick</button>
-            </div>
+          <div class="text-muted mb-2">V4 JPN CompID</div>
+          <div class="input-group">
+            <input type="text" class="form-control" id="jpn">
+            <button class="btn btn-primary" onclick="getRandom('jpn',jpnlist)">Pick</button>
+          </div>
         </div>
         <div class="col-md-4">
-            <div class="mb-2 text-muted">V4 ENG CompID</div>
-            <div class="input-group">
-                <input type="text" class="form-control" id="eng">
-                <button class="btn btn-primary" id="get_eng" onclick="get_random_eng()">Pick</button>
-            </div>
+          <div class="text-muted mb-2">V4 ENG CompID</div>
+          <div class="input-group">
+            <input type="text" class="form-control" id="eng">
+            <button class="btn btn-primary" onclick="getRandom('eng',englist)">Pick</button>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-    </div>
+  </div>
 </div>
 <div class="text-center mt-2 text-muted small">VVD Editor Plus</div>
-</body>
 <script>
-    const getRandom = (id, list) => document.getElementById(id).value = list[Math.floor(Math.random() * list.length)];
-    function get_random_chn(){getRandom('chn',chnlist)}
-    function get_random_jpn(){getRandom('jpn',jpnlist)}
-    function get_random_eng(){getRandom('eng',englist)}
-
-    const chnlist = [
-        'BX49FFZ2PWRK4XE7',
-        'BL5H97EAGKSWWLDL',
-        'BN6E7987EMTRSNC3',
-        'BCBACYR3LB2LZCD4',
-        'BM5F98G8GLSSWMD3',
-        'BKA8C6BZLHZHZKC2',
-        'BMA8D82ZMLZH2MDE',
-        'BN6BD964MMTM2NEA',
-        'BK6CF6M5PHTN4KD6',
-        'BM9DD826MLYP2MEK',
-        'BC6ADYL3MBTL2CD5',
-        'BT89LD22WSXK8TE2',
-        'BMAAH863SLZL6ME4',
-        'BL7BD7C4MKWM2LC6',
-        'BY4FEGX8NXRS3YE3',
-        'BM6888CZFLTHTMC7',
-        'BKCEC6L7LH3RZKC8',
-        'BK8H79SAEHXWSKDB',
-        'BKCEC9G7LH3RZKC8',
-        'BMA8DBXZMLZH2MDE',
-        'BD7B84P4FCWMTDDA',
-        'BX6EMK57XWTR9XEC',
-        'BW7HCH5ALTWWZWEB',
-        'BD79E4T2NCWK3DDF',
-        'BM688B9ZFLTHTMC7',
-        'BM9DDBY6MLYP2MEK',
-        'BC6AD3G3MBTL2CD5',
-        'BN6BDC34MMTM2NEA',
-        'BCBAC3M3LB2LZCD4',
-        'BL7BDA94MKWM2LC6'
-    ]
-
-    const jpnlist = [
-        'BPAMGAZ8RNZS5PE9',
-        'BMADD8MZMLZH2MDE',
-        'BX3LFFY7PWPR4XF3',
-        'BE9H82K5FDYNTEDD',
-        'BE8DC2AZLDXHZECF',
-        'BM9KD8N6MLYP2MEK',
-        'BD7EEZK2NCWK3DDF',
-        'BNBCB9CYKM2GYNCE',
-        'BN6GD9W4MMTM2NEA',
-        'BT4GND44YSRMATF6',
-        'BT8ELDP2WSXK8TE2',
-        'BX6LMFX7XWTR9XEC',
-        'BX4PEFHANWRW3XEL',
-        'BY9DKG3ZTXYH7YEE',
-        'BL8HE745NKXN3LFK',
-        'BH9EE5E2NGYK3HD2',
-        'BN6EL9Z2WMTK8NEF',
-        'BM5M98B8GLSSWMD3',
-        'BCBFCYK3LB2LZCD4'
-    ]
-
-    const englist = [
-        'BXI5WRTWNYF9CSG6',
-        'BLLR2PRJLTVT7VA0',
-        'BAIOIIQUZET7K7TZ',
-        'BAOGOJOS7JV24L3A',
-        'BTT44A75Z6D0A5FA',
-        'BIXIAD9ONT2XK45H',
-        'BP1HG461N9ZKPPLX',
-        'BSCYZZIGTPLT1ZGH',
-        'BVT0H52GWP0X38UI',
-        'BMBYE2CCHLCL16N6',
-        'BGK5C1CWQ3XLZ1YU',
-        'BXF9LMPMWPQ8YUIB',
-        'BB1M9132ZR8GT601',
-        'BZV0EWHRW5HKOH07',
-        'BPVF1TRUKA4C7TU3',
-        'BGJYU3KQ9ZHYZNYJ',
-        'BU1V7ROSXNGYUS38',
-        'BXO5Q2H7B2V2XAGX',
-        'BE1VO1T2JVRLQ8ZV',
-        'BAIOW91Q7N1RHYW1',
-        'BUX9X4GS1P33VAXW',
-        'BO2LE8MD6RM6JB4T',
-        'BNSHEXH5U91KGPJA',
-        'BHG08OHURSXGBTRX',
-        'BM6AW0CLPJIWZSOV'
-    ]
+const chnlist=['BX49FFZ2PWRK4XE7','BL5H97EAGKSWWLDL','BN6E7987EMTRSNC3','BCBACYR3LB2LZCD4','BM5F98G8GLSSWMD3','BKA8C6BZLHZHZKC2','BMA8D82ZMLZH2MDE','BN6BD964MMTM2NEA','BK6CF6M5PHTN4KD6','BM9DD826MLYP2MEK','BC6ADYL3MBTL2CD5','BT89LD22WSXK8TE2','BMAAH863SLZL6ME4','BL7BD7C4MKWM2LC6','BY4FEGX8NXRS3YE3','BM6888CZFLTHTMC7','BKCEC6L7LH3RZKC8','BK8H79SAEHXWSKDB','BKCEC9G7LH3RZKC8','BMA8DBXZMLZH2MDE','BD7B84P4FCWMTDDA','BX6EMK57XWTR9XEC','BW7HCH5ALTWWZWEB','BD79E4T2NCWK3DDF','BM688B9ZFLTHTMC7','BM9DDBY6MLYP2MEK','BC6AD3G3MBTL2CD5','BN6BDC34MMTM2NEA','BCBAC3M3LB2LZCD4','BL7BDA94MKWM2LC6'];
+const jpnlist=['BPAMGAZ8RNZS5PE9','BMADD8MZMLZH2MDE','BX3LFFY7PWPR4XF3','BE9H82K5FDYNTEDD','BE8DC2AZLDXHZECF','BM9KD8N6MLYP2MEK','BD7EEZK2NCWK3DDF','BNBCB9CYKM2GYNCE','BN6GD9W4MMTM2NEA','BT4GND44YSRMATF6','BT8ELDP2WSXK8TE2','BX6LMFX7XWTR9XEC','BX4PEFHANWRW3XEL','BY9DKG3ZTXYH7YEE','BL8HE745NKXN3LFK','BH9EE5E2NGYK3HD2','BN6EL9Z2WMTK8NEF','BM5M98B8GLSSWMD3','BCBFCYK3LB2LZCD4'];
+const englist=['BXI5WRTWNYF9CSG6','BLLR2PRJLTVT7VA0','BAIOIIQUZET7K7TZ','BAOGOJOS7JV24L3A','BTT44A75Z6D0A5FA','BIXIAD9ONT2XK45H','BP1HG461N9ZKPPLX','BSCYZZIGTPLT1ZGH','BVT0H52GWP0X38UI','BMBYE2CCHLCL16N6','BGK5C1CWQ3XLZ1YU','BXF9LMPMWPQ8YUIB','BB1M9132ZR8GT601','BZV0EWHRW5HKOH07','BPVF1TRUKA4C7TU3','BGJYU3KQ9ZHYZNYJ','BU1V7ROSXNGYUS38','BXO5Q2H7B2V2XAGX','BE1VO1T2JVRLQ8ZV','BAIOW91Q7N1RHYW1','BUX9X4GS1P33VAXW','BO2LE8MD6RM6JB4T','BNSHEXH5U91KGPJA','BHG08OHURSXGBTRX','BM6AW0CLPJIWZSOV'];
+function getRandom(type,list){document.getElementById(type).value=list[Math.floor(Math.random()*list.length)]}
 </script>
+</body>
 </html>
