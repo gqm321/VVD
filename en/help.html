@@ -7,69 +7,76 @@
     <link rel="icon" href="https://www.vocaloid.com/favicon.ico" type="image/x-icon">
 </head>
 <body>
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-light bg-white shadow-sm px-3">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="static/logo.png" height="20" class="d-inline-block align-text-top" style="margin-right: 20px"
-                 alt="VOCALOID">VVD
-            Editor Plus Help
+            <img src="static/logo.png" height="22" class="d-inline-block align-text-top me-2" alt="VOCALOID">
+            <span class="fw-bold text-primary">VVD Editor Plus Help</span>
         </a>
-        <a class="navbar-brand" one-link-mark="yes" style="position: relative;right: 0px" href="../help">CHS</a>
+        <div class="d-flex gap-3">
+            <a class="btn btn-outline-primary btn-sm px-3" one-link-mark="yes" href="../help">CN</a>
+        </div>
     </div>
 </nav>
-<div class="container mt-4">
-    <h1 id='帮助'>Help</h1>
-    <h2 id='什么是vvd'>What is VVD</h2>
-    <p>VVD is a file under the same path as .ddb and .ddi files, using the same name as .ddb and .ddi files, storing the basic information about the voicebank.</p>
-    <h2 id='编辑vvd可以干什么'>What can we do by editing VVD</h2>
-    <p>Editing <code>VOICENAME</code> in VVD can change the name of a voicebank in V2/3/4 editor. (V5 editor reads the name string in registry and won't be affected.)</p>
-    <h2 id='关于如何使用安装脚本'>How to use the install script</h2>
-    <p>This script can install a voicebank into V4</p>
-    <ol start=''>
-        <li>Fill in the CompID and the name of a voicebank, download the.vvd file and the script.</li>
-        <li>Move the .ddb, .ddi, and .vvd file under a subdir whose name is same as the <code>CompID</code> of this voicebank. (E.g. Luotianyi_CHN_Meng: <code>D:\Program Files
-            (x86)\VoiceDB\LuoTianyiV4_CHN\BK8H76TAEHXWSKDB</code>) Confirm .ddb, .ddi and .vvd files share the same name and under the same dir.
-        </li>
-        <li>Move <code>install.bat</code> into the same dir as above and <strong>Run as Administrator</strong>.
-        </li>
-        <li>Now the voicebank should have been successfully installed. Similarly, you can uninstall it using <code>uninstall.bat</code>.</li>
 
-    </ol>
-    <h2 id='关于compid'>About CompID</h2>
-    <p>
-        Since the install script is for V4, you need to get a CompID for the voicebank which matches its language. V4 voicebanks can directly use the origin CompID. V5 voicebanks, however, need to get a corresponding V4 CompID. Here are some V4 CHN, JPN and ENG CompID, click to pick it randomly.
-    <div class="input-group">
-        <span class="input-group-text" id="basic-chn" style="margin-left: 20px;">V4 CHN CompID</span>
-        <input type="text" id="chn" style="width: 300px"/>
-        <button type="button" class="btn btn-primary" id="get_chn" onclick="get_random_chn()">Pick</button>
-		</div>
-	<div class="input-group">
-        <span class="input-group-text" id="basic-jpn" style="margin-left: 20px;">V4 &nbsp;JPN CompID</span>
-        <input type="text" id="jpn" style="width: 300px"/>
-        <button type="button" class="btn btn-primary" id="get_jpn" onclick="get_random_jpn()">Pick</button>
-		</div>
-	<div class="input-group">
-        <span class="input-group-text" id="basic-eng" style="margin-left: 20px;">V4 ENG CompID</span>
-        <input type="text" id="eng" style="width: 300px"/>
-        <button type="button" class="btn btn-primary" id="get_eng" onclick="get_random_eng()">Pick</button>
+<div class="container mt-4 mb-5">
+    <div class="card shadow-sm border-0 p-4">
+        <h1 id="帮助" class="mb-4">Help</h1>
+
+        <h2 id="什么是vvd" class="mt-3">What is VVD</h2>
+        <p>VVD is a file under the same path as .ddb and .ddi files, using the same name as .ddb and .ddi files, storing the basic information about the voicebank.</p>
+
+        <h2 id="编辑vvd可以干什么" class="mt-4">What can we do by editing VVD</h2>
+        <p>Editing <code>VOICENAME</code> in VVD can change the name of a voicebank in V2/3/4 editor. (V5 editor reads the name string in registry and won't be affected.)</p>
+
+        <h2 id="关于如何使用安装脚本" class="mt-4">How to use the install script</h2>
+        <p>This script can install a voicebank into V4</p>
+        <ol>
+            <li>Fill in the CompID and the name of a voicebank, download the .vvd file and the script.</li>
+            <li>Move the .ddb, .ddi, and .vvd file under a subdir whose name is same as the <code>CompID</code> of this voicebank. (E.g. Luotianyi_CHN_Meng: <code>D:\Program Files (x86)\VoiceDB\LuoTianyiV4_CHN\BK8H76TAEHXWSKDB</code>) Confirm .ddb, .ddi and .vvd files share the same name and under the same dir.</li>
+            <li>Move <code>install.bat</code> into the same dir as above and <strong>Run as Administrator</strong>.</li>
+            <li>Now the voicebank should have been successfully installed. Similarly, you can uninstall it using <code>uninstall.bat</code>.</li>
+        </ol>
+
+        <h2 id="关于compid" class="mt-4">About CompID</h2>
+        <p>Since the install script is for V4, you need to get a CompID for the voicebank which matches its language. V4 voicebanks can directly use the origin CompID. V5 voicebanks, however, need to get a corresponding V4 CompID. Here are some V4 CHN, JPN and ENG CompID, click to pick it randomly.</p>
+
+        <div class="mt-4">
+    <div class="row g-3">
+        <div class="col-md-4">
+            <div class="mb-2 text-muted">V4 CHN CompID</div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="chn">
+                <button class="btn btn-primary" id="get_chn" onclick="get_random_chn()">Pick</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-2 text-muted">V4 JPN CompID</div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="jpn">
+                <button class="btn btn-primary" id="get_jpn" onclick="get_random_jpn()">Pick</button>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="mb-2 text-muted">V4 ENG CompID</div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="eng">
+                <button class="btn btn-primary" id="get_eng" onclick="get_random_eng()">Pick</button>
+            </div>
+        </div>
     </div>
-    </p>
 </div>
+    </div>
+</div>
+<div class="text-center mt-2 text-muted small">VVD Editor Plus</div>
 </body>
 <script>
-    function get_random_chn() {
-        document.getElementById('chn').value = chnlist[Math.floor(Math.random() * chnlist.length)]
-    }
+    const getRandom = (id, list) => document.getElementById(id).value = list[Math.floor(Math.random() * list.length)];
+    function get_random_chn(){getRandom('chn',chnlist)}
+    function get_random_jpn(){getRandom('jpn',jpnlist)}
+    function get_random_eng(){getRandom('eng',englist)}
 
-    function get_random_jpn() {
-        document.getElementById('jpn').value = jpnlist[Math.floor(Math.random() * jpnlist.length)]
-    }
-
-    function get_random_eng() {
-        document.getElementById('eng').value = jpnlist[Math.floor(Math.random() * englist.length)]
-    }
-
-    var chnlist = [
+    const chnlist = [
         'BX49FFZ2PWRK4XE7',
         'BL5H97EAGKSWWLDL',
         'BN6E7987EMTRSNC3',
@@ -102,7 +109,7 @@
         'BL7BDA94MKWM2LC6'
     ]
 
-    var jpnlist = [
+    const jpnlist = [
         'BPAMGAZ8RNZS5PE9',
         'BMADD8MZMLZH2MDE',
         'BX3LFFY7PWPR4XF3',
@@ -124,7 +131,7 @@
         'BCBFCYK3LB2LZCD4'
     ]
 
-    var englist = [
+    const englist = [
         'BXI5WRTWNYF9CSG6',
         'BLLR2PRJLTVT7VA0',
         'BAIOIIQUZET7K7TZ',
@@ -150,7 +157,6 @@
         'BNSHEXH5U91KGPJA',
         'BHG08OHURSXGBTRX',
         'BM6AW0CLPJIWZSOV'
-]
-
+    ]
 </script>
 </html>
