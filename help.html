@@ -57,6 +57,18 @@
             <button class="btn btn-primary" onclick="getRandom('eng',englist)">Pick</button>
           </div>
         </div>
+        <div class="col-md-6">
+          <div class="text-muted mb-2">原始串码</div>
+          <div class="input-group">
+            <input type="text" class="form-control" id="cInput" oninput="encode()">
+            <button class="btn btn-primary" onclick="encode()">编码</button>
+            <button class="btn btn-outline-secondary" onclick="random()">随机</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="text-muted mb-2">CompID</div>
+          <input type="text" class="form-control" id="sOutput" readonly>
+        </div>
       </div>
     </div>
   </div>
@@ -66,7 +78,13 @@
 const chnlist=['BX49FFZ2PWRK4XE7','BL5H97EAGKSWWLDL','BN6E7987EMTRSNC3','BCBACYR3LB2LZCD4','BM5F98G8GLSSWMD3','BKA8C6BZLHZHZKC2','BMA8D82ZMLZH2MDE','BN6BD964MMTM2NEA','BK6CF6M5PHTN4KD6','BM9DD826MLYP2MEK','BC6ADYL3MBTL2CD5','BT89LD22WSXK8TE2','BMAAH863SLZL6ME4','BL7BD7C4MKWM2LC6','BY4FEGX8NXRS3YE3','BM6888CZFLTHTMC7','BKCEC6L7LH3RZKC8','BK8H79SAEHXWSKDB','BKCEC9G7LH3RZKC8','BMA8DBXZMLZH2MDE','BD7B84P4FCWMTDDA','BX6EMK57XWTR9XEC','BW7HCH5ALTWWZWEB','BD79E4T2NCWK3DDF','BM688B9ZFLTHTMC7','BM9DDBY6MLYP2MEK','BC6AD3G3MBTL2CD5','BN6BDC34MMTM2NEA','BCBAC3M3LB2LZCD4','BL7BDA94MKWM2LC6'];
 const jpnlist=['BPAMGAZ8RNZS5PE9','BMADD8MZMLZH2MDE','BX3LFFY7PWPR4XF3','BE9H82K5FDYNTEDD','BE8DC2AZLDXHZECF','BM9KD8N6MLYP2MEK','BD7EEZK2NCWK3DDF','BNBCB9CYKM2GYNCE','BN6GD9W4MMTM2NEA','BT4GND44YSRMATF6','BT8ELDP2WSXK8TE2','BX6LMFX7XWTR9XEC','BX4PEFHANWRW3XEL','BY9DKG3ZTXYH7YEE','BL8HE745NKXN3LFK','BH9EE5E2NGYK3HD2','BN6EL9Z2WMTK8NEF','BM5M98B8GLSSWMD3','BCBFCYK3LB2LZCD4'];
 const englist=['BXI5WRTWNYF9CSG6','BLLR2PRJLTVT7VA0','BAIOIIQUZET7K7TZ','BAOGOJOS7JV24L3A','BTT44A75Z6D0A5FA','BIXIAD9ONT2XK45H','BP1HG461N9ZKPPLX','BSCYZZIGTPLT1ZGH','BVT0H52GWP0X38UI','BMBYE2CCHLCL16N6','BGK5C1CWQ3XLZ1YU','BXF9LMPMWPQ8YUIB','BB1M9132ZR8GT601','BZV0EWHRW5HKOH07','BPVF1TRUKA4C7TU3','BGJYU3KQ9ZHYZNYJ','BU1V7ROSXNGYUS38','BXO5Q2H7B2V2XAGX','BE1VO1T2JVRLQ8ZV','BAIOW91Q7N1RHYW1','BUX9X4GS1P33VAXW','BO2LE8MD6RM6JB4T','BNSHEXH5U91KGPJA','BHG08OHURSXGBTRX','BM6AW0CLPJIWZSOV'];
-function getRandom(type,list){document.getElementById(type).value=list[Math.floor(Math.random()*list.length)]}
+const CHAR=["BAEB2T9XAGMFMF","MAEB8K37HWD62S","7TLCA54S5K2DD2","E5KDFC54KTEPHN","BWCE266WGLK9EG","X8FFBH7ZYHCR7C","3BHG9D8BXRH4A6","CDDH329YLS5S8P","YHGKDAAR4BGHKK","G4AL47BPMM6NW9","ZP2M6FCXBA    ","7NK4DNW2      ","SP73EMAD      ","ZRHEFF3C      ","TS58G8DY      ","8TC9HLC3      ","MWGLK92Z      ","9XYZLANN      ","WYPGMDZP      ","4ZNYN2FG      ","32WMPEP8      ","N3ZNRKE6      ","64RXSCR5      ","X5TRTHTF      ","R6LWW564      ","57XPXGS7      ","Y8MSY67E      ","P9STZ389      "];
+const ALPHABET="23456789ABCDEFGHKLMNPRSTWXYZ";
+const HIGH=[[1,8,8,7,1,8,8,7,1,8,8,7,1],[2,3,0,4,2,3,0,4,2,3,0,4,2],[1,5,0,8,1,5,0,8,1,5,0,8,1],[0,1,0,1,0,1,0,1,0,1,0,1,0],[1,0,2,1,1,0,2,1,1,0,2,1,2],[9,0,4,2,9,0,4,2,9,0,4,2,5],[0,3,0,5,0,3,0,5,0,3,0,5,0],[5,0,5,0,5,0,5,0,5,0,5,0,7],[0,2,1,7,0,2,1,7,0,2,1,7,9],[0,1,5,9,0,1,5,9,0,1,5,9,0],[1,0,0,1,1,0,0,1,1,0,0,1,1],[0,3,1,1,0,3,1,1,0,3,1,2,3],[1,1,2,3,1,1,2,3,1,1,2,1,2],[2,3,1,2,2,3,1,2,2,3,1,9,1],[2,8,9,1,2,8,9,1,2,8,9,8,0],[1,9,8,0,1,9,8,0,1,9,8,0,0]];
+const LOW=[[1,7,5,2,1,7,5,2,1,7,5,2,1],[8,2,9,3,8,2,9,3,8,2,9,3,8],[6,6,1,8,6,6,1,8,6,6,1,8,6],[9,2,7,3,9,2,7,3,9,2,7,3,9],[1,8,2,6,1,8,2,6,1,8,2,6,1],[1,3,2,7,1,3,2,7,1,3,2,7,1],[7,3,4,9,7,3,4,9,7,3,4,9,7],[8,2,1,4,8,2,1,4,8,2,1,4,8],[6,8,7,8,6,8,7,8,6,8,7,8,6],[3,8,7,5,3,8,7,5,3,8,7,5,3],[2,4,3,2,2,4,3,2,2,4,3,2,2],[7,5,9,1,7,5,9,1,7,5,9,1,7],[8,4,6,9,8,4,6,9,8,4,6,9,8],[3,6,4,2,3,6,4,2,3,6,4,2,3],[9,7,0,7,9,7,0,7,9,7,0,7,9],[2,4,1,8,2,4,1,8,2,4,1,8,2]];
+function getRandom(t,l){document.getElementById(t).value=l[Math.floor(Math.random()*l.length)]}
+function encode(){const v=document.getElementById('cInput').value;if(!/^[\x30-\x52]{7}[0-9]{7}$/.test(v)){document.getElementById('sOutput').value='';return}const o=[];let i,j,cs=0;for(i=0;i<14;i+=2){const c1=v[i],r1=c1.charCodeAt(0)+(c1<':'?-48:-55);o[i]=CHAR[r1][i];const c2=v[i+1],r2=c2.charCodeAt(0)+(c2<':'?-48:-55);o[i+1]=CHAR[r2][i+1];cs=(cs+o[i].charCodeAt(0)+o[i+1].charCodeAt(0))&0xFF}const s=(t,k)=>{for(i=1;i<14;i++){j=ALPHABET.indexOf(o[i]);j+=t[k][i-1];o[i]=ALPHABET[(j+28)%28]}};s(HIGH,cs>>4);s(LOW,cs&15);const h=n=>{const c=n.toString(16).toUpperCase()[0];return c==='0'?'K':c==='1'?'L':c};document.getElementById('sOutput').value=o.join('')+h(cs>>4)+h(cs&15)}
+function random(){const f='0123456789:;<=>?@ABCDEFGHIJKLMNOPQR';let p='0';for(let i=1;i<3;i++)p+=f[Math.floor(Math.random()*f.length)];p+=Math.floor(Math.random()*5);for(let i=4;i<7;i++)p+=f[Math.floor(Math.random()*f.length)];for(let i=0;i<7;i++)p+=Math.floor(Math.random()*10);document.getElementById('cInput').value=p;encode()}
 </script>
 </body>
 </html>
