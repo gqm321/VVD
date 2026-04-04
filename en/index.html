@@ -9,112 +9,69 @@
 </head>
 <body>
 <nav class="navbar navbar-light bg-white shadow-sm px-3">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="./">
-      <img src="static/logo.png" height="22" class="align-text-top me-2" alt="VOCALOID">
-      <span class="fw-bold text-primary">VVD Editor Plus</span>
-    </a>
-    <a class="btn btn-outline-primary btn-sm px-3" href="../">CN</a>
-  </div>
+<div class="container-fluid">
+<a class="navbar-brand" href="./">
+<img src="static/logo.png" height="22" class="align-text-top me-2" alt="VOCALOID">
+<span class="fw-bold text-primary">VVD Editor Plus</span>
+</a>
+<a class="btn btn-outline-primary btn-sm px-3" href="../">CN</a>
+</div>
 </nav>
 <div class="container mt-4">
-  <div class="card shadow-sm border-0">
-    <div class="card-body p-4">
-      <div class="row g-0 align-items-center">
-        <div class="col">
-          <div class="mb-2 text-muted">Encoded</div>
-          <textarea class="form-control" style="height:280px" id="miwen" placeholder="Paste VVD encoded content here..."></textarea>
-        </div>
-        <div class="col-auto d-flex justify-center px-4" style="min-width:110px">
-          <div class="btn-group-vertical gap-2 w-100">
-            <button class="btn btn-primary py-2" onclick="jie_mi()">Decode →</button>
-            <button class="btn btn-warning py-2" onclick="jia_mi()">← Encode</button>
-            <button class="btn btn-success py-2" onclick="download_vvd_content()">Download</button>
-          </div>
-        </div>
-        <div class="col">
-          <div class="mb-2 text-muted">Decoded</div>
-          <textarea class="form-control" style="height:280px" id="mingwen" placeholder="Decoded content will show here..."></textarea>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="card shadow-sm border-0">
+<div class="card-body p-4">
+<div class="row g-0 align-items-center">
+<div class="col">
+<div class="mb-2 text-muted">Encoded</div>
+<textarea class="form-control" style="height:280px" id="miwen" placeholder="Paste VVD encoded content here..."></textarea>
+</div>
+<div class="col-auto d-flex justify-center px-4" style="min-width:110px">
+<div class="btn-group-vertical gap-2 w-100">
+<button class="btn btn-primary py-2" onclick="mingwen.value=c(miwen.value)">Decode →</button>
+<button class="btn btn-warning py-2" onclick="miwen.value=c(mingwen.value)">← Encode</button>
+<button class="btn btn-success py-2" onclick="down('Voicebank.vvd',miwen.value)">Download</button>
+</div>
+</div>
+<div class="col">
+<div class="mb-2 text-muted">Decoded</div>
+<textarea class="form-control" style="height:280px" id="mingwen" placeholder="Decoded content will show here..."></textarea>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="container mt-3 mb-4">
-  <div class="card shadow-sm border-0">
-    <div class="card-body p-4">
-      <div class="row g-4">
-        <div class="col-md-4">
-          <label class="form-label text-muted">CompID</label>
-          <input type="text" class="form-control" placeholder="E.g. BK8H76TAEHXWSKDB" id="compid">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label text-muted">Voicebank Name</label>
-          <input type="text" class="form-control" placeholder="E.g. Luotianyi_CHN_Meng" id="dbname">
-        </div>
-        <div class="col-md-4">
-          <label class="form-label text-muted">Actions</label>
-          <div class="d-flex gap-2 flex-wrap">
-            <button class="btn btn-primary flex-fill" onclick="generate_vvd()">Generate</button>
-            <button class="btn btn-success flex-fill" onclick="download_vvd()">Download</button>
-            <button class="btn btn-danger flex-fill" onclick="download_bat()">V4 Setup Bat</button>
-            <button class="btn btn-warning flex-fill" onclick="location.href='/VVD/en/help.html'">?</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="card shadow-sm border-0">
+<div class="card-body p-4">
+<div class="row g-4">
+<div class="col-md-4">
+<label class="form-label text-muted">CompID</label>
+<input type="text" class="form-control" placeholder="E.g. BK8H76TAEHXWSKDB" id="compid">
+</div>
+<div class="col-md-4">
+<label class="form-label text-muted">Voicebank Name</label>
+<input type="text" class="form-control" placeholder="E.g. Luotianyi_CHN_Meng" id="dbname">
+</div>
+<div class="col-md-4">
+<label class="form-label text-muted">Actions</label>
+<div class="d-flex gap-2 flex-wrap">
+<button class="btn btn-primary flex-fill" onclick="gen()">Generate</button>
+<button class="btn btn-success flex-fill" onclick="gen(),down((compid.value||'Voicebank')+'.vvd',miwen.value)">Download</button>
+<button class="btn btn-danger flex-fill" onclick="bat()">V4 Setup Bat</button>
+<button class="btn btn-warning flex-fill" onclick="location.href='/VVD/en/help.html'">?</button>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="text-center mt-3 text-muted small">VVD Editor Plus</div>
 <script>
-function download(filename,text){const pom=document.createElement('a');pom.setAttribute('href','data:text/plain;charset=utf-8,'+encodeURIComponent(text));pom.setAttribute('download',filename);if(document.createEvent){const event=document.createEvent('MouseEvents');event.initEvent('click',!0,!0);pom.dispatchEvent(event)}else{pom.click()}}
-const dict={A:'[','[':'A',_:'E',E:'_',H:'R',S:'I',O:'U',J:'P',P:'J',K:'Q',Q:'K',W:'M',M:'W',I:'S','^':'D',D:'^','\\':'F',']':'G',G:']',F:'\\',R:'H',U:'O','@':'Z',Z:'@',B:'X',X:'B',C:'Y',Y:'C',L:'V',V:'L',T:'N',N:'T','+':'1','(':'2',')':'3','.':'4','/':'5',',':'6','-':'7','"':'8','#':'9','*':'0','1':'+','2':'(',3:')',4:'.','5':'/',6:',',7:'-',8:'"',9:'#',0:'*',"'":'=',':':"'",'{':'a',a:'{',h:'r',r:'h',n:'t',t:'n',o:'u',u:'o',g:'}','}':'g',j:'p',p:'j',k:'q',q:'k',i:'s',s:'i',e:'\x7f','\x7f':'e','~':'d',d:'~',b:'x',x:'b',c:'y',y:'c',l:'v',v:'l',z:'`','`':'z',m:'w',w:'m',f:'|','|':'f'};
-function convert(str){return str.split('').map(c=>dict[c]||c).join('')}
-function jie_mi(){document.getElementById('mingwen').value=convert(document.getElementById('miwen').value)}
-function jia_mi(){document.getElementById('miwen').value=convert(document.getElementById('mingwen').value)}
-function download_vvd_content(){download('Voicebank.vvd',document.getElementById('miwen').value)}
-function generate_vvd(){const compid=document.getElementById('compid').value,dbname=document.getElementById('dbname').value;const plain=`"ID" = "VOCALOID VIRTUAL VOICE"
-"FORMAT" = "4.0.0.0"
-"VOICEIDSTR" = "${compid}"
-"VOICENAME" = "${dbname}"
-"Breathiness" = "0"
-"Brightness" = "0"
-"Clearness" = "0"
-"Opening" = "0"
-"Gender Factor" = "0"
-"Growl" = "1"`;document.getElementById('mingwen').value=plain,document.getElementById('miwen').value=convert(plain)}
-function download_vvd(){generate_vvd(),download(document.getElementById('compid').value+'.vvd',document.getElementById('miwen').value)}
-function download_bat(){const compid=document.getElementById('compid').value,dbname=document.getElementById('dbname').value;const install=`set DB_COMPID=${compid}
-set DB_DRP=0B0032
-set DB_DEFAULTKEY=1145141919810
-set DB_NAME=${dbname}
-set DB_VERSION=4
-cd /d %~dp0
-cd ..
-set DB_PATH=%cd%
-set BASEDIR=HKEY_LOCAL_MACHINE\\SOFTWARE\\VOCALOID4\\DATABASE
-set POLIDIR=HKEY_LOCAL_MACHINE\\SOFTWARE\\POCALOID4\\DATABASE
-if %PROCESSOR_ARCHITECTURE%==x86 (set reg3264= ) else (set reg3264=/reg:32)
-reg ADD "%BASEDIR%\\%DB_COMPID%" /F /V DRP /T REG_SZ /D "%DB_DRP%" %reg3264%
-reg ADD "%BASEDIR%\\%DB_COMPID%" /F /V PATH /T REG_SZ /D "%DB_PATH%" %reg3264%
-reg ADD "%BASEDIR%\\%DB_COMPID%" /F /V INSTALLED /T REG_DWORD /D 1 %reg3264%
-reg ADD "%BASEDIR%\\%DB_COMPID%" /F /V NAME /T REG_SZ /D "VOCALOID%DB_VERSION% Voice DB (%DB_NAME%)" %reg3264%
-reg ADD "%BASEDIR%\\%DB_COMPID%" /F /V TIME /T REG_SZ /D "BHMN74F9ED86FKAB" %reg3264%
-reg ADD "%BASEDIR%\\%DB_COMPID%\\KEYS" /F /V default /T REG_SZ /D "%DB_DEFAULTKEY%" %reg3264%
-reg ADD "%POLIDIR%\\%DB_COMPID%" /F /V DRP /T REG_SZ /D "%DB_DRP%" %reg3264%
-reg ADD "%POLIDIR%\\%DB_COMPID%" /F /V PATH /T REG_SZ /D "%DB_PATH%" %reg3264%
-reg ADD "%POLIDIR%\\%DB_COMPID%" /F /V INSTALLED /T REG_DWORD /D 1 %reg3264%
-reg ADD "%POLIDIR%\\%DB_COMPID%" /F /V NAME /T REG_SZ /D "VOCALOID%DB_VERSION% Voice DB (%DB_NAME%)" %reg3264%
-reg ADD "%POLIDIR%\\%DB_COMPID%" /F /V TIME /T REG_SZ /D "BHMN74F9ED86FKAB" %reg3264%`;const uninstall=`set DB_COMPID=${compid}
-set DB_DRP=0B0032
-set DB_DEFAULTKEY=1145141919810
-set DB_NAME=${dbname}
-set DB_VERSION=4
-set BASEDIR=HKEY_LOCAL_MACHINE\\SOFTWARE\\VOCALOID4\\DATABASE
-set POLIDIR=HKEY_LOCAL_MACHINE\\SOFTWARE\\POCALOID4\\DATABASE
-if %PROCESSOR_ARCHITECTURE%==x86 (set reg3264= ) else (set reg3264=/reg:32)
-reg DELETE "%BASEDIR%\\%DB_COMPID%" /F %reg3264%
-reg DELETE "%POLIDIR%\\%DB_COMPID%" /F %reg3264%`;download('install.bat',install),download('uninstall.bat',uninstall)}
+const $=id=>document.getElementById(id),c=s=>s.split('').map(i=>dict[i]||i).join(''),
+down=(n,t)=>{const a=document.createElement('a');a.href='data:text/plain;charset=utf-8,'+encodeURIComponent(t);a.download=n;a.click()},
+dict={A:'[','[':'A',_:'E',E:'_',H:'R',S:'I',O:'U',J:'P',P:'J',K:'Q',Q:'K',W:'M',M:'W',I:'S','^':'D',D:'^','\\':'F',']':'G',G:']',F:'\\',R:'H',U:'O','@':'Z',Z:'@',B:'X',X:'B',C:'Y',Y:'C',L:'V',V:'L',T:'N',N:'T','+':'1','(':'2',')':'3','.':'4','/':'5',',':'6','-':'7','"':'8','#':'9','*':'0','1':'+','2':'(',3:')',4:'.','5':'/',6:',',7:'-',8:'"',9:'#',0:'*',"'":'=',':':"'",'{':'a',a:'{',h:'r',r:'h',n:'t',t:'n',o:'u',u:'o',g:'}','}':'g',j:'p',p:'j',k:'q',q:'k',i:'s',s:'i',e:'\x7f','\x7f':'e','~':'d',d:'~',b:'x',x:'b',c:'y',y:'c',l:'v',v:'l',z:'`','`':'z',m:'w',w:'m',f:'|','|':'f'},
+gen=()=>{const cid=compid.value,name=dbname.value,txt=`"ID" = "VOCALOID VIRTUAL VOICE"\n"FORMAT" = "4.0.0.0"\n"VOICEIDSTR" = "${cid}"\n"VOICENAME" = "${name}"\n"Breathiness" = "0"\n"Brightness" = "0"\n"Clearness" = "0"\n"Opening" = "0"\n"Gender Factor" = "0"\n"Growl" = "1"`;mingwen.value=txt,miwen.value=c(txt)},
+bat=()=>{const cid=compid.value,name=dbname.value,com=`set DB_COMPID=${cid}\nset DB_DRP=0B0032\nset DB_DEFAULTKEY=1145141919810\nset DB_NAME=${name}\nset DB_VERSION=4\nset BASEDIR=HKEY_LOCAL_MACHINE\\SOFTWARE\\VOCALOID4\\DATABASE\nset POLIDIR=HKEY_LOCAL_MACHINE\\SOFTWARE\\POCALOID4\\DATABASE\nif %PROCESSOR_ARCHITECTURE%==x86 (set reg3264= ) else (set reg3264=/reg:32)`,ins=`${com}\ncd /d %~dp0\ncd ..\nset DB_PATH=%cd%\nreg ADD "%BASEDIR%\\%DB_COMPID%" /F /V DRP /T REG_SZ /D "%DB_DRP%" %reg3264%\nreg ADD "%BASEDIR%\\%DB_COMPID%" /F /V PATH /T REG_SZ /D "%DB_PATH%" %reg3264%\nreg ADD "%BASEDIR%\\%DB_COMPID%" /F /V INSTALLED /T REG_DWORD /D 1 %reg3264%\nreg ADD "%BASEDIR%\\%DB_COMPID%" /F /V NAME /T REG_SZ /D "VOCALOID%DB_VERSION% Voice DB (%DB_NAME%)" %reg3264%\nreg ADD "%BASEDIR%\\%DB_COMPID%" /F /V TIME /T REG_SZ /D "BHMN74F9ED86FKAB" %reg3264%\nreg ADD "%BASEDIR%\\%DB_COMPID%\\KEYS" /F /V default /T REG_SZ /D "%DB_DEFAULTKEY%" %reg3264%\nreg ADD "%POLIDIR%\\%DB_COMPID%" /F /V DRP /T REG_SZ /D "%DB_DRP%" %reg3264%\nreg ADD "%POLIDIR%\\%DB_COMPID%" /F /V PATH /T REG_SZ /D "%DB_PATH%" %reg3264%\nreg ADD "%POLIDIR%\\%DB_COMPID%" /F /V INSTALLED /T REG_DWORD /D 1 %reg3264%\nreg ADD "%POLIDIR%\\%DB_COMPID%" /F /V NAME /T REG_SZ /D "VOCALOID%DB_VERSION% Voice DB (%DB_NAME%)" %reg3264%\nreg ADD "%POLIDIR%\\%DB_COMPID%" /F /V TIME /T REG_SZ /D "BHMN74F9ED86FKAB" %reg3264%`,un=`${com}\nreg DELETE "%BASEDIR%\\%DB_COMPID%" /F %reg3264%\nreg DELETE "%POLIDIR%\\%DB_COMPID%" /F %reg3264%`;down('install.bat',ins),down('uninstall.bat',un)};
 </script>
 </body>
 </html>
